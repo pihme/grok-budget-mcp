@@ -67,7 +67,7 @@ Community references (not endorsements):
 
 - [SergioComeron/GrokUsageBar](https://github.com/SergioComeron/GrokUsageBar)
 - [marcelocantos/claudia `docs/grok-usage-billing.md`](https://github.com/marcelocantos/claudia/blob/master/docs/grok-usage-billing.md)
-- [bubbabright/supergrok-usage-extension](https://github.com/bubbabright/supergrok-usage-extension) (and similar UsageBar / OpenUsage / QuotaKit / agent-usage providers)
+- [robinebers/openusage](https://github.com/robinebers/openusage/blob/main/docs/providers/grok.md) and [ColumbusLabs/QuotaKit](https://github.com/ColumbusLabs/QuotaKit/blob/main/docs/grok.md) (and similar usage-bar / agent-usage providers)
 - Upstream CLI wiring visible in [xai-org/grok-build `billing.rs`](https://github.com/xai-org/grok-build/blob/main/crates/codegen/xai-grok-shell/src/extensions/billing.rs) (pager → same proxy)
 
 **Polarity:** remaining percent = `100 - creditUsagePercent`. Verified in community notes against the TUI (“Weekly limit left: 0%” when `creditUsagePercent` is 100).
@@ -102,7 +102,7 @@ Prefer **one primary tool**. A second tool is optional for monthly units.
 
 Do **not** return raw tokens, auth file paths with secrets, or the full upstream body by default.
 
-### Tool 2: `get_monthly_credits` (optional, v1.1)
+### Tool 2: `get_monthly_credits` (optional, secondary)
 
 Same auth path; calls `GET …/v1/billing` **without** `format=credits`. Returns `monthly_limit`, `used`, `billing_period_start`, `billing_period_end` from `config`. Mark clearly as secondary (does not gate the weekly Build limit).
 
@@ -176,7 +176,7 @@ tool_timeout_sec = 30
 Or via CLI:
 
 ```bash
-grok mcp add grok-budget -- /path/to/grok-budget-mcp
+grok mcp add grok-budget -- node /path/to/grok-budget-mcp/dist/index.js
 ```
 
 Notes:
