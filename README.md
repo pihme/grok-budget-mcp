@@ -159,9 +159,7 @@ A good agent instruction: *"Before starting long or expensive work, call `grok-b
 
 ## Background
 
-Design notes and the research behind this server: spec concept
-[`wiki/grok-budget-mcp.md` in pihme/ideengarten](https://github.com/pihme/ideengarten/blob/main/wiki/grok-budget-mcp.md)
-(private notes repo). Community prior art that documents the endpoint and the `auth.json` shape (not endorsements):
+Design notes and the research behind this server: [SPEC.md](SPEC.md). Community prior art that documents the endpoint and the `auth.json` shape (not endorsements):
 [SergioComeron/GrokUsageBar](https://github.com/SergioComeron/GrokUsageBar),
 [marcelocantos/claudia `docs/grok-usage-billing.md`](https://github.com/marcelocantos/claudia/blob/master/docs/grok-usage-billing.md),
 [robinebers/openusage](https://github.com/robinebers/openusage/blob/main/docs/providers/grok.md),
