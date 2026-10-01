@@ -1,6 +1,10 @@
 # grok-budget-mcp
 
-A small, local **MCP server** (stdio) that lets a [Grok Build](https://docs.x.ai/build) CLI agent ask
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+[![Node.js](https://img.shields.io/badge/node-%3E%3D18.18-339933?logo=node.js&logoColor=white)](package.json)
+[![Website](https://img.shields.io/badge/website-pihme.github.io%2Fgrok--budget--mcp-3b4ea0)](https://pihme.github.io/grok-budget-mcp/)
+
+A small, local **MCP server** (stdio) that lets a [Grok Build](https://docs.x.ai/build/overview) CLI agent ask
 *"how much of my SuperGrok / Grok Build weekly usage pool is left, and when does it reset?"* —
 the same figure the interactive TUI shows under `/usage` (alias `/cost`).
 
@@ -84,6 +88,7 @@ Errors are returned as MCP tool errors (`isError: true`) with a code and a reada
 | HTTP 429 | `RATE_LIMITED` — retry later; do not call in a loop |
 | HTTP 5xx / other / network / timeout | `REQUEST_FAILED` — includes the HTTP status if any |
 | 200 but unparseable / no usage and no period | `SHAPE_CHANGED` — billing response shape changed |
+| Anything else (unexpected internal error) | `INTERNAL` — generic message; details are never echoed |
 
 ## Token handling (read-only)
 
@@ -164,6 +169,10 @@ Design notes and the research behind this server: [SPEC.md](SPEC.md). Community 
 [marcelocantos/claudia `docs/grok-usage-billing.md`](https://github.com/marcelocantos/claudia/blob/master/docs/grok-usage-billing.md),
 [robinebers/openusage](https://github.com/robinebers/openusage/blob/main/docs/providers/grok.md),
 [ColumbusLabs/QuotaKit](https://github.com/ColumbusLabs/QuotaKit/blob/main/docs/grok.md).
+
+## Contributing
+
+Issues and ideas are welcome: see [Contributing](CONTRIBUTING.md). Website and handbook: [pihme.github.io/grok-budget-mcp](https://pihme.github.io/grok-budget-mcp/).
 
 ## License
 
