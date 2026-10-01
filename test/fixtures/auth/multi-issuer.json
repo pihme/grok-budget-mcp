@@ -1,0 +1,20 @@
+{
+  "https://auth.other.example::old-client": {
+    "auth_mode": "oidc",
+    "key": "FAKE-ALT-ISSUER-TOKEN",
+    "expires_at": "2099-01-01T00:00:00.000Z",
+    "oidc_issuer": "https://auth.other.example"
+  },
+  "https://auth.x.ai::stale-client": {
+    "auth_mode": "oidc",
+    "key": "FAKE-XAI-STALE-TOKEN",
+    "expires_at": "2020-01-01T00:00:00.000Z",
+    "oidc_issuer": "https://auth.x.ai"
+  },
+  "https://auth.x.ai::fake-client-id": {
+    "auth_mode": "oidc",
+    "key": "FAKE-XAI-FRESH-TOKEN",
+    "expires_at": "2099-01-01T00:00:00.000Z",
+    "oidc_issuer": "https://auth.x.ai"
+  }
+}

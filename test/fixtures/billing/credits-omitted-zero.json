@@ -1,0 +1,12 @@
+{
+  "config": {
+    "currentPeriod": {
+      "type": "USAGE_PERIOD_TYPE_WEEKLY",
+      "start": "2026-09-28T01:53:09+00:00",
+      "end": "2026-10-05T01:53:09+00:00"
+    },
+    "onDemandCap": { "val": 0 },
+    "onDemandUsed": { "val": 0 },
+    "productUsage": [{ "product": "GrokBuild" }]
+  }
+}

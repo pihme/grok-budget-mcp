@@ -1,0 +1,10 @@
+{
+  "https://auth.x.ai::fake-client-id": {
+    "auth_mode": "oidc",
+    "key": "FAKE-OIDC-ACCESS-TOKEN-expired",
+    "refresh_token": "FAKE-REFRESH-TOKEN",
+    "expires_at": "2020-01-01T00:00:00.000Z",
+    "oidc_issuer": "https://auth.x.ai",
+    "oidc_client_id": "fake-client-id"
+  }
+}

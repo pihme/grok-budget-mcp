@@ -1,0 +1,6 @@
+{
+  "config": {
+    "weeklyQuota": { "remainingFraction": 0.4 },
+    "resetsAtUnix": 1790000000
+  }
+}

@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.test-build/
+*.log
+.DS_Store
+# Never commit real Grok credentials
+auth.json
+!test/fixtures/**/auth.json
+.env

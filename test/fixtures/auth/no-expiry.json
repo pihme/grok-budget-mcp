@@ -1,0 +1,7 @@
+{
+  "https://auth.x.ai::fake-client-id": {
+    "auth_mode": "oidc",
+    "key": "FAKE-OIDC-ACCESS-TOKEN-no-expiry",
+    "oidc_issuer": "https://auth.x.ai"
+  }
+}

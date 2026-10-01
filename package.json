@@ -1,0 +1,45 @@
+{
+  "name": "grok-budget-mcp",
+  "version": "0.1.0",
+  "description": "Unofficial local MCP server that tells Grok Build agents how much of the SuperGrok / Grok Build weekly usage pool is left (same figure as /usage).",
+  "license": "MIT",
+  "author": "Peter Ihme",
+  "type": "module",
+  "bin": {
+    "grok-budget-mcp": "dist/index.js"
+  },
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18.18"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json && node -e \"require('fs').chmodSync('dist/index.js',0o755)\"",
+    "test": "tsc -p tsconfig.test.json && node --test .test-build/test/*.test.js",
+    "smoke": "npm run build && node scripts/smoke.mjs",
+    "prepare": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pihme/grok-budget-mcp.git"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "grok",
+    "grok-build",
+    "supergrok",
+    "usage"
+  ],
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.31.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.0",
+    "typescript": "^5.9.3"
+  }
+}

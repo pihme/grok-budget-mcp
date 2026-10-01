@@ -1,0 +1,6 @@
+{
+  "xai-api-key": {
+    "auth_mode": "api_key",
+    "key": "xai-FAKE-API-KEY-should-not-be-used"
+  }
+}
