@@ -1,0 +1,42 @@
+name: Endpoint or login change
+description: The unofficial billing endpoint, the auth.json written by `grok login`, or the Grok CLI seems to have changed.
+labels: ["upstream"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        grok-budget-mcp reads an **unofficial, undocumented** xAI endpoint, so changes on xAI's side are expected from time to time.
+        This tracker is public: **do not paste `auth.json`, tokens, `Authorization` headers or the raw billing response.** Field names and their types are enough.
+  - type: dropdown
+    id: what
+    attributes:
+      label: What changed
+      options:
+        - get_budget returns a warning or null fields that used to be filled
+        - SHAPE_CHANGED error
+        - UNAUTHORIZED although `grok login` is fresh
+        - auth.json shape (AUTH_SHAPE_UNEXPECTED after `grok login`)
+        - Numbers differ from what /usage shows in the TUI
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: grok-budget-mcp version or commit, and the Grok CLI version.
+      placeholder: grok-budget-mcp 0.1.0, grok 0.x
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: What you see
+      description: The `warning` text or error message, and which fields are new, missing or renamed (names and types only, no values that identify you).
+    validations:
+      required: true
+  - type: textarea
+    id: tui
+    attributes:
+      label: What /usage shows
+      description: Optional. The figures the TUI shows at the same time, if they help compare.
