@@ -10,6 +10,12 @@ feat!/fix! or a "BREAKING CHANGE:" footer -> major. While the version is
 change before 1.0.0). Only commits that touch the shipped code count:
 src/, package.json, package-lock.json, tsconfig.json.
 
+Release-As: a "Release-As: X.Y.Z" commit footer (git trailer) since the last tag sets
+exactly that version, from any commit and any path, so an empty commit triggers it:
+  git commit --allow-empty -m "chore: release 1.0" -m "Release-As: 1.0.0"
+"Release-As: grok-budget-mcp@X.Y.Z" works too. Upwards only: a version at or below the
+current one is ignored with a warning. Several footers: the highest wins.
+
 The release:
   1. writes the new version into package.json / package-lock.json and pushes
      "chore(release): grok-budget-mcp vX.Y.Z [skip ci]" to main (skipped when
@@ -36,6 +42,7 @@ NAME = "grok-budget-mcp"
 TAG_PREFIX = NAME + "/v"
 PATHS = ["src/", "package.json", "package-lock.json", "tsconfig.json"]
 RELEASE_SUBJECT = "chore(release): " + NAME + " v{ver} [skip ci]"
+RELEASE_AS = re.compile(r"^v?(\d+)\.(\d+)\.(\d+)$")
 BOT = ("github-actions[bot]", "41898282+github-actions[bot]@users.noreply.github.com")
 
 
@@ -108,6 +115,40 @@ def releasable(since: Optional[str]) -> List[Tuple[str, str, str]]:
     return rows
 
 
+_warned = set()
+
+
+def warn(msg: str) -> None:
+    if msg in _warned:
+        return
+    _warned.add(msg)
+    print(("::warning::" if os.environ.get("GITHUB_ACTIONS") else "warning: ") + msg, file=sys.stderr)
+
+
+def release_as(since: Optional[str]) -> Optional[Tuple[Tuple[int, int, int], str]]:
+    """Highest Release-As footer since the last tag: (version, short sha)."""
+    rng = f"{since}..HEAD" if since else "HEAD"
+    out = quiet(["git", "log", rng, "--format=%h%x1f%(trailers:key=Release-As,valueonly,separator=%x1d)%x1e"])
+    best = None
+    for rec in out.split("\x1e"):
+        sha, _, vals = rec.strip().partition("\x1f")
+        for raw in (v.strip() for v in vals.split("\x1d")):
+            if not raw:
+                continue
+            target, _, ver = raw.rpartition("@")
+            if target and target != NAME:
+                warn(f"{sha}: 'Release-As: {raw}' ignored: unknown artifact {target!r} (only {NAME})")
+                continue
+            m = RELEASE_AS.match(ver)
+            if not m:
+                warn(f"{sha}: 'Release-As: {raw}' ignored: not X.Y.Z")
+                continue
+            v = (int(m.group(1)), int(m.group(2)), int(m.group(3)))
+            if best is None or v > best[0]:
+                best = (v, sha)
+    return best
+
+
 def strongest(kinds: List[str]) -> Optional[str]:
     for k in ("major", "minor", "patch"):
         if k in kinds:
@@ -115,9 +156,11 @@ def strongest(kinds: List[str]) -> Optional[str]:
     return None
 
 
-def notes(rows: List[Tuple[str, str, str]], ver: str, prev: Optional[str]) -> str:
+def notes(rows: List[Tuple[str, str, str]], ver: str, prev: Optional[str], forced: Optional[str] = None) -> str:
     groups = [("major", "Breaking changes"), ("minor", "Features"), ("patch", "Fixes")]
     out = [] if prev else ["First release.", ""]
+    if forced:
+        out += [f"Version set by a `Release-As` footer in {forced}.", ""]
     for kind, title in groups:
         items = [f"- {s} ({h})" for k, s, h in rows if k == kind]
         if items:
@@ -139,15 +182,23 @@ def package_version() -> str:
 def main() -> int:
     dry = "--dry-run" in sys.argv or os.environ.get("RELEASE_DRY_RUN") == "1"
     prev = last_tag()
+    cur = parse_semver(prev) if prev else (0, 0, 0)
     rows = releasable(prev)
     kind = strongest([k for k, _, _ in rows])
-    if not kind:
+    forced = release_as(prev)
+    if forced and forced[0] <= cur:
+        warn(f"{forced[1]}: 'Release-As' {'.'.join(map(str, forced[0]))} ignored: not above {'.'.join(map(str, cur))}")
+        forced = None
+    if forced:
+        nxt, kind = "{}.{}.{}".format(*forced[0]), "Release-As " + forced[1]
+    elif kind:
+        nxt = "{}.{}.{}".format(*bump(cur, kind))
+    else:
         print(f"{NAME}: no releasable commits since {prev or 'start'}")
         return 0
-    nxt = "{}.{}.{}".format(*bump(parse_semver(prev) if prev else (0, 0, 0), kind))
     tag = TAG_PREFIX + nxt
     print(f"{NAME}: {prev or '0.0.0'} -> {tag} ({kind}, {len(rows)} commit(s))")
-    body = notes(rows, nxt, prev)
+    body = notes(rows, nxt, prev, forced[1] if forced else None)
     if dry:
         print(body)
         return 0
