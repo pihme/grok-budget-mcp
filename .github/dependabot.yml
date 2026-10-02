@@ -1,6 +1,6 @@
 # Commit prefixes follow the rules in AGENTS.md:
 #   runtime deps -> fix(deps), dev deps -> chore(deps-dev), GitHub Actions -> ci(deps)
-# (No release automation yet; the prefixes keep the history ready for it.)
+# release.py reads these: fix -> patch release, chore/ci -> no release.
 version: 2
 updates:
   - package-ecosystem: npm
