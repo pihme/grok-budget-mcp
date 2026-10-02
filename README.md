@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/pihme/grok-budget-mcp/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/pihme/grok-budget-mcp/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
-[![Node.js](https://img.shields.io/badge/node-%3E%3D18.18-339933?logo=node.js&logoColor=white)](package.json)
+[![Node.js](https://img.shields.io/badge/node-%3E%3D22-339933?logo=node.js&logoColor=white)](package.json)
 [![Website](https://img.shields.io/badge/website-pihme.github.io%2Fgrok--budget--mcp-3b4ea0)](https://pihme.github.io/grok-budget-mcp/)
 
 A small, local **MCP server** (stdio) that lets a [Grok Build](https://docs.x.ai/build/overview) CLI agent ask
@@ -116,7 +116,7 @@ The base URL can be overridden with `GROK_CLI_CHAT_PROXY_BASE_URL` (same variabl
 
 ## Install / build
 
-Requires Node.js 18.18+ (20+ recommended).
+Requires Node.js 22+.
 
 ```bash
 git clone https://github.com/pihme/grok-budget-mcp.git

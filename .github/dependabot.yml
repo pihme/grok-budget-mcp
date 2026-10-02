@@ -14,6 +14,10 @@ updates:
       prefix: fix
       prefix-development: chore
       include: scope
+    ignore:
+      # @types/node follows the oldest supported Node.js major (engines >=22), not the newest
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
     groups:
       npm-minor-and-patch:
         dependency-type: production

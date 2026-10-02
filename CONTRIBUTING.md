@@ -14,7 +14,7 @@ The tracker is public. Never paste your `auth.json`, a token, an `Authorization`
 
 ## Build and test locally
 
-Needs Node.js 18.18+ (20+ recommended) and npm. The tests need no Grok account: they mock the billing endpoint and use synthetic auth files.
+Needs Node.js 22+ and npm. The tests need no Grok account: they mock the billing endpoint and use synthetic auth files.
 
 ```bash
 npm install

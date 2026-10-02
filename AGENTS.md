@@ -21,7 +21,7 @@ License: **MIT** (`LICENSE`). Personal helper, not affiliated with xAI.
 - **Commits:** [Conventional Commits](https://www.conventionalcommits.org/): `feat:`, `fix:`, `perf:`, `feat!:` or a `BREAKING CHANGE:` footer, `docs:`, `test:`, `chore:`, `ci:`. There is no release automation and no release yet; do not tag or publish without Peter. The version lives in `package.json` and is repeated in `src/server.ts` and the User-Agent in `src/billing.ts` (issue #2).
 - **Dependabot** (`.github/dependabot.yml`): runtime deps `fix(deps):`, dev deps `chore(deps-dev):`, GitHub Actions `ci(deps):`. Merge its PRs only with green CI; until CI runs on GitHub, leave them for Peter.
 - **CI:** the workflow is not on GitHub yet (the token lacks the `workflow` scope). Never commit anything under `.github/workflows/`.
-- **Changes on main:** keep them small; `npm test` must pass (CI will run Node 20 and 22; supported range is issue #1).
+- **Changes on main:** keep them small; `npm test` must pass; CI runs Node 22 and 24. Supported: Node.js 22+ (`engines`); `@types/node` stays on the oldest supported major (^22).
 - Outside pull requests: not decided yet (see `CONTRIBUTING.md`); issues are welcome.
 - Website: <https://pihme.github.io/grok-budget-mcp/>, generated onto the `gh-pages` branch from outside this repo. Do not edit `gh-pages` by hand.
 

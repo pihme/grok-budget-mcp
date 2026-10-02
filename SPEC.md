@@ -196,5 +196,5 @@ Notes:
 ## Decisions (2026-10-01)
 
 - **Q1 — Percentages:** `get_budget` returns all percentages per product. Top-level `used_percent` and `remaining_percent` come from `config.creditUsagePercent` (the overall pool), and `products` contains one `{ product, used_percent, remaining_percent }` entry for every `config.productUsage[]` row. The agent picks which product is relevant; there is no single `product` field or preference for GrokBuild.
-- **Q2 — Stack:** TypeScript on Node using the official MCP TypeScript SDK (`@modelcontextprotocol/sdk`), stdio transport, and minimal dependencies. The config wiring uses `node` to run the built `dist/index.js` entry point.
+- **Q2 — Stack:** TypeScript on Node.js 22+ (raised from 18.18 on 2026-10-02, since Node 18 and 20 are end-of-life) using the official MCP TypeScript SDK (`@modelcontextprotocol/sdk`), stdio transport, and minimal dependencies. The config wiring uses `node` to run the built `dist/index.js` entry point.
 - **Q3 — Refresh:** v1 does not refresh the token or write `auth.json`. It reads `key` and `expires_at`; an expired token or billing 401/403 produces a clear error telling the user to run `grok login`, with no retry loop.
