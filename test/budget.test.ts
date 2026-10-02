@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { readFileSync, statSync } from "node:fs";
 import { getBudget, getMonthlyCredits } from "../src/budget.js";
 import { BudgetError } from "../src/errors.js";
+import { VERSION } from "../src/version.js";
 import { FIXED_NOW, authFixture, billingFixture, header, json, mockFetch } from "./helpers.js";
 
 const VALID = authFixture("valid.json");
@@ -19,6 +20,7 @@ test("get_budget: single GET with the exact URL and headers", async () => {
   assert.equal(header(call!.init, "authorization"), `Bearer ${TOKEN}`);
   assert.equal(header(call!.init, "x-xai-token-auth"), "xai-grok-cli");
   assert.equal(header(call!.init, "accept"), "application/json");
+  assert.equal(header(call!.init, "user-agent"), `grok-budget-mcp/${VERSION}`);
   assert.ok(call!.init?.signal, "request has an abort signal (timeout)");
   assert.equal(r.used_percent, 42.5);
   assert.equal(r.products.length, 3);

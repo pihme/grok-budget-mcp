@@ -4,6 +4,7 @@
  * the billing proxy (via GROK_CLI_CHAT_PROXY_BASE_URL) with a fixture GROK_HOME.
  */
 import { test } from "node:test";
+import { readFileSync } from "node:fs";
 import assert from "node:assert/strict";
 import { createServer, type IncomingHttpHeaders } from "node:http";
 import type { AddressInfo } from "node:net";
@@ -13,6 +14,7 @@ import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js"
 import { billingFixture, tempGrokHome } from "./helpers.js";
 
 const ENTRY = fileURLToPath(new URL("../src/index.js", import.meta.url));
+const PKG_VERSION = (JSON.parse(readFileSync(new URL("../../package.json", import.meta.url), "utf8")) as { version: string }).version;
 
 test("stdio server: list tools and call get_budget end-to-end", async () => {
   const seen: Array<{ url: string; headers: IncomingHttpHeaders }> = [];
@@ -34,6 +36,7 @@ test("stdio server: list tools and call get_budget end-to-end", async () => {
   try {
     await client.connect(transport);
     assert.equal(client.getServerVersion()?.name, "grok-budget");
+    assert.equal(client.getServerVersion()?.version, PKG_VERSION);
     const { tools } = await client.listTools();
     assert.deepEqual(tools.map((t) => t.name).sort(), ["get_budget", "get_monthly_credits"]);
 

@@ -1,4 +1,5 @@
 import { BudgetError, LOGIN_HINT } from "./errors.js";
+import { VERSION } from "./version.js";
 
 /**
  * Client + field mapping for the UNOFFICIAL cli-chat-proxy billing endpoint the
@@ -80,7 +81,7 @@ export async function requestBilling(
         Authorization: `Bearer ${opts.key}`,
         "X-XAI-Token-Auth": "xai-grok-cli",
         Accept: "application/json",
-        "User-Agent": "grok-budget-mcp/0.1",
+        "User-Agent": `grok-budget-mcp/${VERSION}`,
       },
       signal: controller.signal,
     });

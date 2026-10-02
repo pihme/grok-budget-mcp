@@ -2,9 +2,10 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import type { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
 import { type Deps, getBudget, getMonthlyCredits } from "./budget.js";
 import { BudgetError } from "./errors.js";
+import { VERSION } from "./version.js";
 
 export const SERVER_NAME = "grok-budget";
-export const SERVER_VERSION = "0.1.0";
+export const SERVER_VERSION = VERSION;
 
 const GET_BUDGET_DESCRIPTION =
   "Return current Grok Build / SuperGrok weekly pool usage and reset time (same figure as the TUI `/usage`). " +
