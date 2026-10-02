@@ -177,4 +177,4 @@ Issues and ideas are welcome: see [Contributing](CONTRIBUTING.md). Website and h
 
 ## License
 
-[MIT](LICENSE) © 2026 Peter Ihme
+[MIT](LICENSE)

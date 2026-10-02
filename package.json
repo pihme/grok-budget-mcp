@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Unofficial local MCP server that tells Grok Build agents how much of the SuperGrok / Grok Build weekly usage pool is left (same figure as /usage).",
   "license": "MIT",
-  "author": "Peter Ihme",
+  "author": "pihme (https://github.com/pihme)",
   "type": "module",
   "bin": {
     "grok-budget-mcp": "dist/index.js"
