@@ -1,7 +1,7 @@
 {
   "name": "grok-budget-mcp",
   "version": "0.1.0",
-  "description": "Unofficial local MCP server that tells Grok Build agents how much of the SuperGrok / Grok Build weekly usage pool is left (same figure as /usage).",
+  "description": "A small local MCP server that tells a Grok Build agent how much of its weekly usage pool is left, the same figure as /usage. Read-only, unofficial endpoint.",
   "license": "MIT",
   "author": "pihme (https://github.com/pihme)",
   "type": "module",
