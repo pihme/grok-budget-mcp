@@ -1,5 +1,6 @@
 node_modules/
 dist/
+release-out/
 .test-build/
 *.log
 .DS_Store
