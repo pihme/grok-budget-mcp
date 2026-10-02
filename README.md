@@ -2,6 +2,7 @@
 
 [![CI](https://github.com/pihme/grok-budget-mcp/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/pihme/grok-budget-mcp/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+[![Release](https://img.shields.io/github/v/release/pihme/grok-budget-mcp?filter=grok-budget-mcp%2F*&label=release)](https://github.com/pihme/grok-budget-mcp/releases)
 [![Node.js](https://img.shields.io/badge/node-%3E%3D22-339933?logo=node.js&logoColor=white)](package.json)
 [![Website](https://img.shields.io/badge/website-pihme.github.io%2Fgrok--budget--mcp-3b4ea0)](https://pihme.github.io/grok-budget-mcp/)
 
@@ -129,6 +130,10 @@ npm run smoke      # optional: start the server over stdio, list tools, call get
 
 Optionally put the `grok-budget-mcp` binary on your PATH with `npm link` (or
 `npm install -g github:pihme/grok-budget-mcp`).
+
+Prebuilt alternative: each [release](https://github.com/pihme/grok-budget-mcp/releases) has a
+`grok-budget-mcp-X.Y.Z.tgz` (built `dist/`, no build step); `npm install -g ./grok-budget-mcp-X.Y.Z.tgz`
+puts `grok-budget-mcp` on your PATH. Versions follow SemVer; nothing is published to npm.
 
 ## Wiring into Grok Build
 
