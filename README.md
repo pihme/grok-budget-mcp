@@ -1,5 +1,6 @@
 # grok-budget-mcp
 
+[![CI](https://github.com/pihme/grok-budget-mcp/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/pihme/grok-budget-mcp/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 [![Node.js](https://img.shields.io/badge/node-%3E%3D18.18-339933?logo=node.js&logoColor=white)](package.json)
 [![Website](https://img.shields.io/badge/website-pihme.github.io%2Fgrok--budget--mcp-3b4ea0)](https://pihme.github.io/grok-budget-mcp/)
