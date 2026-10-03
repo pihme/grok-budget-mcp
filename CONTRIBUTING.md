@@ -12,7 +12,7 @@ Pull requests are welcome; contributions are accepted under the [MIT License](LI
 
 ## Keep secrets out
 
-The tracker is public. Never paste your `auth.json`, a token, an `Authorization` header or the raw billing response. Field names and their types are enough to look into a changed endpoint. If you find a way the server could leak your token, open an issue that only names the affected area and ask for a private channel.
+The tracker is public. Never paste your `auth.json`, a token, an `Authorization` header or the raw billing response. Field names and their types are enough to look into a changed endpoint. If you find a way the server could leak your token, please report it privately through the [private reporting form](https://github.com/pihme/grok-budget-mcp/security/advisories/new), as described in [SECURITY.md](SECURITY.md), not as a public issue.
 
 ## Build and test locally
 
