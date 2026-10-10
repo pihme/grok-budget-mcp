@@ -180,6 +180,18 @@ Design notes and the research behind this server: [SPEC.md](SPEC.md). Community 
 
 Issues and ideas are welcome: see [Contributing](CONTRIBUTING.md). Website and handbook: [pihme.github.io/grok-budget-mcp](https://pihme.github.io/grok-budget-mcp/).
 
+## How this project is built
+
+grok-budget-mcp is developed agent-first. AI coding agents write all code,
+tests, and documentation, and review each other's changes, under human
+direction: specs, design decisions, and acceptance based on observed
+behaviour and test results. No human reads the code line by line. This
+is a deliberate choice. Quality rests on automated tests, CI, and
+independent agent review.
+
+Evaluate the code against your own requirements before you depend on it.
+Found a problem? Open an issue.
+
 ## License
 
-[MIT](LICENSE)
+[MIT](LICENSE). Third-party software installed with it, and its licenses: [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
