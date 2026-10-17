@@ -1,10 +1,18 @@
 # grok-budget-mcp
 
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/assets/grok-budget-mcp-logo-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="docs/assets/grok-budget-mcp-logo-light.svg">
+    <img src="docs/assets/grok-budget-mcp-logo-universal.svg" width="120" alt="grok-budget-mcp logo">
+  </picture>
+</p>
+
 [![CI](https://github.com/pihme/grok-budget-mcp/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/pihme/grok-budget-mcp/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 [![Release](https://img.shields.io/github/v/release/pihme/grok-budget-mcp?filter=grok-budget-mcp%2F*&label=release)](https://github.com/pihme/grok-budget-mcp/releases)
 [![Node.js](https://img.shields.io/badge/node-%3E%3D22-339933?logo=node.js&logoColor=white)](package.json)
-[![Website](https://img.shields.io/badge/website-pihme.github.io%2Fgrok--budget--mcp-3b4ea0)](https://pihme.github.io/grok-budget-mcp/)
+[![Website](https://img.shields.io/badge/website-pihme.github.io%2Fgrok--budget--mcp-6b4fd8)](https://pihme.github.io/grok-budget-mcp/)
 
 A small, local **MCP server** (stdio) that lets a [Grok Build](https://docs.x.ai/build/overview) CLI agent ask
 *"how much of my SuperGrok / Grok Build weekly usage pool is left, and when does it reset?"* —
