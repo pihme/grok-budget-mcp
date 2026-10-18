@@ -8,3 +8,7 @@ release-out/
 auth.json
 !test/fixtures/**/auth.json
 .env
+
+# SonarQube Cloud inputs (written in CI)
+lcov.info
+.scannerwork/
