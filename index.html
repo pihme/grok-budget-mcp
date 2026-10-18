@@ -53,12 +53,13 @@ main{margin-left:0;padding:2rem 1.2rem 3rem}.grid{grid-template-columns:1fr}h1{f
 :root{--slate:#455a6e;--pf-w:2px}
 @media(prefers-color-scheme:dark){:root{--slate:#5d7a99}}
 
-/* 1. Vise-bracket frame (hero, code blocks) */
-.pf-hero{position:relative;padding:1.2rem 1.9rem 1.3rem;margin:0 0 1.2rem -1.9rem;width:fit-content;max-width:52rem}
-.pf-hero::before,.pf-hero::after,pre.pf-br::before,pre.pf-br::after{content:"";position:absolute;top:0;bottom:0;width:.9rem;border:var(--pf-w) solid var(--slate);pointer-events:none}
-.pf-hero::before,pre.pf-br::before{left:0;border-right:0}
-.pf-hero::after,pre.pf-br::after{right:0;border-left:0}
-pre.pf-br{position:relative;border-left:0;padding-left:1.4rem;padding-right:1.4rem}
+/* 1. Vise brackets: once per page, inside the quickstart code block's rounded box; other code blocks are plain rounded surfaces */
+.pf-hero{position:relative;padding:1.2rem 0 1.3rem;margin:0 0 1.2rem;max-width:52rem}
+main pre{border-left:0}
+pre.pf-br{position:relative}
+pre.pf-br::after{content:"";position:absolute;inset:0;border:var(--pf-w) solid color-mix(in srgb,var(--slate) 60%,transparent);border-radius:inherit;pointer-events:none;
+  --c:linear-gradient(#000 0 0);-webkit-mask:var(--c) 0 0/10px 10px,var(--c) 100% 0/10px 10px,var(--c) 0 100%/10px 10px,var(--c) 100% 100%/10px 10px;-webkit-mask-repeat:no-repeat;
+  mask:var(--c) 0 0/10px 10px no-repeat,var(--c) 100% 0/10px 10px no-repeat,var(--c) 0 100%/10px 10px no-repeat,var(--c) 100% 100%/10px 10px no-repeat}
 
 /* 2. Section heading mark: two-colour half-split square instead of "#" */
 h2 .hash{display:inline-block;width:.8em;height:.8em;margin-right:.6rem;vertical-align:-.05em;font-size:inherit;color:transparent;overflow:hidden;
@@ -124,7 +125,7 @@ main ul>li::before{content:"";position:absolute;left:-1.25rem;top:.5em;width:.42
 <p>The server depends on an endpoint that xAI does not document, so it can break whenever xAI changes it; it then reports a warning or an error instead of guessing. It never renews the login: when the session runs out, the user runs <code>grok login</code> again or simply uses the Grok CLI, which renews its own session. The automated tests use made-up sample responses, so the live service is only checked by hand. It needs Node.js 22 or newer; older versions are no longer supported. There is no package on the npm registry, so it is installed from source or from the package attached to each release. There are no open issues.</p></section><div class="pf-div" aria-hidden="true"></div><section id="concepts"><h2><span class="hash">#</span>Key concepts</h2><div class="grid"><div class="card"><h3>Two tools</h3><p><code>get_budget</code> (primary): the weekly pool. <code>get_monthly_credits</code> (secondary): monthly credit units, which do not gate the weekly Build limit. Neither takes input.</p></div><div class="card"><h3>Read-only login</h3><p>Reads <code>$GROK_HOME/auth.json</code> or <code>~/.grok/auth.json</code>, picks the <code>grok login</code> entry and uses its <code>key</code>. Never refreshes, never writes, never calls an auth endpoint.</p></div><div class="card"><h3>One request per call</h3><p>Each call re-reads <code>auth.json</code> and sends one GET with a 15 s timeout. No retries, no caching, no polling.</p></div><div class="card"><h3>Never invents numbers</h3><p>Missing fields are <code>null</code> and explained in <code>warning</code>. Monthly figures are never relabelled as weekly. Nothing usable means an error.</p></div><div class="card"><h3>Token stays private</h3><p>The token, the <code>Authorization</code> header and the raw upstream body are never logged, printed or returned. No secrets go into the MCP config.</p></div><div class="card"><h3>Proxy override</h3><p><code>GROK_CLI_CHAT_PROXY_BASE_URL</code> replaces the default base URL; the server then calls <code>&lt;base&gt;/billing?format=credits</code>.</p></div></div></section><div class="pf-div" aria-hidden="true"></div><section id="start"><h2><span class="hash">#</span>Getting started</h2><p>Needs Node.js 22+ and a Grok CLI that is logged in with <code>grok login</code>.</p><pre class="pf-br"><code>git clone https://github.com/pihme/grok-budget-mcp.git
 cd grok-budget-mcp
 npm install        # also builds dist/ via the prepare script
-npm test           # offline: mocked endpoint, synthetic auth files</code></pre><p>Or take the prebuilt package from the <a href="https://github.com/pihme/grok-budget-mcp/releases">latest release</a> (built <code>dist/</code>, no build step): <code>npm install -g ./grok-budget-mcp-X.Y.Z.tgz</code> puts <code>grok-budget-mcp</code> on your <code>PATH</code>. Nothing is published to npm.</p><p>Wire it into Grok Build (everything after <code>--</code> is the server command):</p><pre class="pf-br"><code>grok mcp add grok-budget -- node /path/to/grok-budget-mcp/dist/index.js</code></pre><p>Or in <code>~/.grok/config.toml</code>:</p><pre class="pf-br"><code>[mcp_servers.grok-budget]
+npm test           # offline: mocked endpoint, synthetic auth files</code></pre><p>Or take the prebuilt package from the <a href="https://github.com/pihme/grok-budget-mcp/releases">latest release</a> (built <code>dist/</code>, no build step): <code>npm install -g ./grok-budget-mcp-X.Y.Z.tgz</code> puts <code>grok-budget-mcp</code> on your <code>PATH</code>. Nothing is published to npm.</p><p>Wire it into Grok Build (everything after <code>--</code> is the server command):</p><pre><code>grok mcp add grok-budget -- node /path/to/grok-budget-mcp/dist/index.js</code></pre><p>Or in <code>~/.grok/config.toml</code>:</p><pre><code>[mcp_servers.grok-budget]
 command = &quot;node&quot;
 args = [&quot;/path/to/grok-budget-mcp/dist/index.js&quot;]
 startup_timeout_sec = 15
