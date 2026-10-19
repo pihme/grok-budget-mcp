@@ -33,3 +33,7 @@ License: **MIT** (`LICENSE`). Personal helper, not affiliated with xAI.
 - Caching, polling or background refresh
 - grok.com scraping, Auto Top Up management (out of scope in SPEC)
 - Claims that the endpoint is an official or stable xAI API
+
+## Team rules
+
+Labels: `needs-triage`, `needs-info`, `needs-input`, `ready-for-maintainer`, `ready-for-development`, `ready-for-qa`, `ready-for-human`, `wontfix`, plus `bug` / `enhancement`. `ready-for-maintainer` is for Maintainer (website, docs fixes, smaller changes), `ready-for-development` is for Developer (larger feature and code work), and `ready-for-qa` is for QA. Team roles, labels, handover, merging and release mode: `docs/agents/team.md` (same in every repo; change it in presets first). See `docs/agents/triage-labels.md`.
