@@ -10,6 +10,7 @@ License: **MIT** (`LICENSE`). Personal helper, not affiliated with xAI.
 
 ## How to work here
 
+- Reference environment: `nix/reference-env` (Node.js 22) is binding for build and test. `nix/node-24` is the newer major CI also runs. `nix develop ./nix/reference-env -c npm test`. Each `flake.lock` is committed; Dependabot updates it.
 - TypeScript on Node, ESM, official MCP SDK (`@modelcontextprotocol/sdk`) as the only runtime dependency. Keep it that way; ask before adding a dependency.
 - Layout: `src/index.ts` (stdio entry), `src/server.ts` (tool registration, error mapping), `src/budget.ts` (one call = read auth, one request, map), `src/auth.ts` (read-only `auth.json`), `src/billing.ts` (HTTP client and field mapping), `src/errors.ts` (error codes), `src/version.ts` (version read from `package.json` at runtime), `test/` (`node:test`, mocked fetch, synthetic fixtures in `test/fixtures/`), `scripts/smoke.mjs` (manual check with a real session).
 - **Token handling is read-only** (SPEC Q3, do not reopen): read `key` and `expires_at` only; never refresh, never write `auth.json`, never call an auth endpoint. Never log, print or return the token, the `Authorization` header, the raw upstream body, or OS error text (it can contain local paths). stdout is the MCP channel; diagnostics go to stderr.

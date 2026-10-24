@@ -12,3 +12,7 @@ auth.json
 # SonarQube Cloud inputs (written in CI)
 lcov.info
 .scannerwork/
+
+# Nix dev shells
+/result
+.pip/
