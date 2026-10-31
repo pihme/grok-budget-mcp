@@ -2,7 +2,7 @@
 
 This branch holds the static GitHub Pages site for `pihme/grok-budget-mcp`.
 
-Generated on 2026-10-24 from `main` at commit `2cbcb7f46e764a797caab6c6e7fe05a75bbd6e2e`.
+Generated on 2026-10-31 from `main` at commit `3c724af906525c08162cc7ad92b191fec3adb34f`.
 Self-contained `index.html`, `chronik/index.html` (Chronicles) `jigsaw/index.html` (family page, from `family.json`) and, where present, `namesake/index.html` (from `namesake-<repo>.json`), all with inline CSS, no build step, no trackers; plus favicons (`favicon.svg`, `favicon.png`, `favicon.ico`, `apple-touch-icon.png`) and `.nojekyll`.
 Generator: `gen.py` (layout B, sidebar handbook) + per-site content script + `chronik-<repo>.json` chronicle data + `family.json` project-family registry + `status-<repo>.json` (Current status; open issues and releases pulled live via `gh` at build time).
 Regenerate when `main` changes; do not merge this branch into `main`.
