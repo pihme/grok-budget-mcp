@@ -18,6 +18,8 @@ A small, local **MCP server** (stdio) that lets a [Grok Build](https://docs.x.ai
 *"how much of my SuperGrok / Grok Build weekly usage pool is left, and when does it reset?"* —
 the same figure the interactive TUI shows under `/usage` (alias `/cost`).
 
+Part of [Hobelbank](https://pihme.github.io/hobelbank/), a set of projects on building software in the age of AI.
+
 Today an agent has no first-class way to get that number: `/usage` is TUI-only, `grok -p "/usage"` is
 treated as a prompt, and the ACP `x.ai/billing` method is not exposed over `grok agent stdio`.
 This server reads your existing `grok login` session and returns the figures as JSON.
