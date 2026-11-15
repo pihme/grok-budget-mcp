@@ -7,7 +7,9 @@ updates:
     directory: /
     schedule:
       interval: weekly
-      day: saturday
+      day: monday
+      time: "06:00"
+      timezone: "Europe/Berlin"
     open-pull-requests-limit: 5
     labels: [dependencies, ready-for-maintainer]
     commit-message:
@@ -30,7 +32,9 @@ updates:
     directory: /
     schedule:
       interval: weekly
-      day: saturday
+      day: monday
+      time: "06:00"
+      timezone: "Europe/Berlin"
     open-pull-requests-limit: 5
     labels: [dependencies, ready-for-maintainer]
     commit-message:
@@ -47,7 +51,9 @@ updates:
       - /nix/node-24
     schedule:
       interval: weekly
-      day: saturday
+      day: monday
+      time: "06:00"
+      timezone: "Europe/Berlin"
     open-pull-requests-limit: 5
     labels: [dependencies, ready-for-maintainer]
     commit-message:
